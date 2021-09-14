@@ -25,5 +25,7 @@ namespace OperationBier.Data
 
         public virtual List<Retail> Retailers { get; set; }
 
+        public Guid AuthorId { get; set; }
+
     }
 }

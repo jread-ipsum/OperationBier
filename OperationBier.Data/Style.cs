@@ -17,5 +17,7 @@ namespace OperationBier.Data
         public string RecommendedGlassware { get; set; }
 
         public virtual List<Beer> Beers { get; set; }
+
+        public Guid AuthorId { get; set; }
     }
 }
