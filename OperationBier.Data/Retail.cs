@@ -18,6 +18,8 @@ namespace OperationBier.Data
         public bool IsOnPremise { get; set; }
 
         public virtual List<Beer> Beers { get; set; }
+        public virtual Style Style { get; set; }
+        public virtual Brewery Brewery { get; set; }
 
         public Guid AuthorId { get; set; }
 
