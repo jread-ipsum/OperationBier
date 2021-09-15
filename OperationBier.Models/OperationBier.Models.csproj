@@ -57,10 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BeerModels\BeerCreate.cs" />
+    <Compile Include="BeerModels\BeerDetail.cs" />
+    <Compile Include="BeerModels\BeerListItem.cs" />
+    <Compile Include="BeerModels\BeerEdit.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BeerModels\" />
     <Folder Include="BreweryModels\" />
     <Folder Include="RetailModels\" />
     <Folder Include="StyleModels\" />
