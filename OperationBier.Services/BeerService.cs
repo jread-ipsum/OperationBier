@@ -76,7 +76,7 @@ namespace OperationBier.Services
 
         public bool UpdateBeer(BeerEdit model)
         {
-            using(var ctx = new ApplicationDbContext())
+            using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
