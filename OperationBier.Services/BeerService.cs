@@ -74,6 +74,45 @@ namespace OperationBier.Services
             }
         }
 
+        public BeerDetail GetBeerByName(string name)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Beers
+                    .Single(e => e.BeerName == name);
+                return
+                    new BeerDetail
+                    {
+                        BeerId = entity.BeerId,
+                        BeerName = entity.BeerName,
+                        BreweryName = entity.Brewery.BreweryName,
+                        StyleName = entity.Style.StyleName,
+                        ABV = entity.ABV,
+                        IsRecommended = entity.IsRecommended,
+                        Retailers = entity.Retailers
+                    };
+            }
+        }
+
+        public IEnumerable<BeerRecommended> GetRecommendedBeers()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Where(e => e.IsRecommended == true)
+                    .Select(e => new BeerRecommended
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName,
+                        IsRecommended = e.IsRecommended
+                    });
+                return query.ToArray();
+            }
+        }
+
         public bool UpdateBeer(BeerEdit model)
         {
             using (var ctx = new ApplicationDbContext())
