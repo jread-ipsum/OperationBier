@@ -102,6 +102,10 @@
     <Compile Include="Migrations\202109162145509_Migration2.designer.cs">
       <DependentUpon>202109162145509_Migration2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202109170028378_MadeStyleBreweryNullable.cs" />
+    <Compile Include="Migrations\202109170028378_MadeStyleBreweryNullable.designer.cs">
+      <DependentUpon>202109170028378_MadeStyleBreweryNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Retail.cs" />
@@ -120,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202109162145509_Migration2.resx">
       <DependentUpon>202109162145509_Migration2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202109170028378_MadeStyleBreweryNullable.resx">
+      <DependentUpon>202109170028378_MadeStyleBreweryNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
