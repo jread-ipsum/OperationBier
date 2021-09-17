@@ -16,11 +16,11 @@ namespace OperationBier.Data
         public bool? IsRecommended { get; set; }
 
         [ForeignKey(nameof(Style))]
-        public int StyleId { get; set; }
+        public int? StyleId { get; set; }
         public virtual Style Style { get; set; }
 
         [ForeignKey(nameof(Brewery))]
-        public int BreweryId { get; set; }
+        public int? BreweryId { get; set; }
         public virtual Brewery Brewery { get; set; }
 
         public virtual List<Retail> Retailers { get; set; }

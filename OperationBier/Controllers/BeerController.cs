@@ -47,6 +47,30 @@ namespace OperationBier.Controllers
             return Ok(beer);
         }
 
+        [Route("api/Beer/Name")]
+        public IHttpActionResult Get([FromBody] string name)
+        {
+            BeerService beerService = CreateBeerService();
+            var beer = beerService.GetBeerByName(name);
+            return Ok(beer);
+        }
+
+        [Route("api/Beer/Recommended")]
+        public IHttpActionResult GetRecommended()
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetRecommendedBeers();
+            return Ok(beers);
+        }
+
+        [Route("api/Beer/{ABV}")]
+        public IHttpActionResult GetByABV([FromUri] double abv)
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetBeersByABV(abv);
+            return Ok(beers);
+        }
+
         public IHttpActionResult Put([FromBody] BeerEdit beer)
         {
             if (!ModelState.IsValid)
