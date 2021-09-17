@@ -64,11 +64,10 @@
     <Compile Include="BeerModels\BeerEdit.cs" />
     <Compile Include="BeerModels\BeerRecommended.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RetailModels\BreweryListItem.cs" />
     <Compile Include="RetailModels\CreateRetail.cs" />
-    <Compile Include="RetailModels\DeleteRetail.cs" />
-    <Compile Include="RetailModels\StyleListItem.cs" />
-    <Compile Include="RetailModels\UpDateRetail.cs" />
+    <Compile Include="RetailModels\RetailDetail.cs" />
+    <Compile Include="RetailModels\RetailListItem.cs" />
+    <Compile Include="RetailModels\EditRetail.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BreweryModels\" />

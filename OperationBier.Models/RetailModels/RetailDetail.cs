@@ -1,12 +1,13 @@
-﻿using System;
+﻿using OperationBier.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OperationBier.Data
+namespace OperationBier.Models.RetailModels
 {
-    public class Retail
+    public class RetailDetail
     {
         public int RetailId { get; set; }
         public string RetailName { get; set; }
@@ -18,9 +19,5 @@ namespace OperationBier.Data
         public bool IsOnPremise { get; set; }
 
         public virtual List<Beer> Beers { get; set; }
-
-
-        public Guid AuthorId { get; set; }
-
     }
 }
