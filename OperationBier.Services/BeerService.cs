@@ -1,4 +1,6 @@
-﻿using System;
+﻿using OperationBier.Data;
+using OperationBier.Models.BeerModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +10,102 @@ namespace OperationBier.Services
 {
     public class BeerService
     {
+        private readonly Guid _userId;
+
+        public BeerService(Guid userId)
+        {
+            _userId = userId;
+        }
+
+        public bool CreateBeer(BeerCreate model)
+        {
+            var entity =
+                new Beer()
+                {
+                    AuthorId = _userId,
+                    BeerName = model.BeerName,
+                    ABV = model.ABV,
+                    IsRecommended = model.IsRecommended,
+                    StyleId = model.StyleId,
+                    BreweryId = model.BreweryId
+                };
+
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Beers.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public IEnumerable<BeerListItem> GetBeers()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Select(e => new BeerListItem
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName
+                    });
+                return query.ToArray();
+            }
+        }
+
+        public BeerDetail GetBeerById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Beers
+                    .Single(e => e.BeerId == id);
+                return
+                    new BeerDetail
+                    {
+                        BeerId = entity.BeerId,
+                        BeerName = entity.BeerName,
+                        ABV = entity.ABV,
+                        IsRecommended = entity.IsRecommended,
+                        StyleName = entity.Style.StyleName,
+                        BreweryName = entity.Brewery.BreweryName,
+                        Retailers = entity.Retailers
+                    };
+            }
+        }
+
+        public bool UpdateBeer(BeerEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Beers
+                    .Single(e => e.BeerId == model.BeerId);
+
+                entity.BeerName = model.BeerName;
+                entity.ABV = model.ABV;
+                entity.IsRecommended = model.IsRecommended;
+                entity.Brewery.BreweryName = model.BreweryName;
+                entity.Style.StyleName = model.StyleName;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool DeleteBeer(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Beers
+                    .Single(e => e.BeerId == id);
+
+                ctx.Beers.Remove(entity);
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }
