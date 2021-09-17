@@ -63,6 +63,14 @@ namespace OperationBier.Controllers
             return Ok(beers);
         }
 
+        [Route("api/Beer/{ABV}")]
+        public IHttpActionResult GetByABV([FromUri] double abv)
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetBeersByABV(abv);
+            return Ok(beers);
+        }
+
         public IHttpActionResult Put([FromBody] BeerEdit beer)
         {
             if (!ModelState.IsValid)

@@ -113,6 +113,24 @@ namespace OperationBier.Services
             }
         }
 
+        public IEnumerable<BeerABVListItem> GetBeersByABV(double abv)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Where(e => e.ABV == abv)
+                    .Select(e => new BeerABVListItem
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName,
+                        ABV = e.ABV
+                    });
+                return query.ToArray();
+            }
+        }
+
         public bool UpdateBeer(BeerEdit model)
         {
             using (var ctx = new ApplicationDbContext())
