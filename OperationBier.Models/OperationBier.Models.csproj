@@ -68,10 +68,12 @@
     <Compile Include="RetailModels\RetailDetail.cs" />
     <Compile Include="RetailModels\RetailListItem.cs" />
     <Compile Include="RetailModels\EditRetail.cs" />
+    <Compile Include="StyleModels\StyleCreate.cs" />
+    <Compile Include="StyleModels\StyleListItem.cs" />
+    <Compile Include="StyleModels\StyleEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BreweryModels\" />
-    <Folder Include="StyleModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
