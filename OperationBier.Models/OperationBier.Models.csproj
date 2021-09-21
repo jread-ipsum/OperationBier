@@ -63,6 +63,9 @@
     <Compile Include="BeerModels\BeerListItem.cs" />
     <Compile Include="BeerModels\BeerEdit.cs" />
     <Compile Include="BeerModels\BeerRecommended.cs" />
+    <Compile Include="BreweryModels\BreweryCreate.cs" />
+    <Compile Include="BreweryModels\BreweryDetails.cs" />
+    <Compile Include="BreweryModels\BreweryEdit.cs" />
     <Compile Include="BeerModels\BeerRetailers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetailModels\CreateRetail.cs" />
@@ -72,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="BreweryModels\" />
+    <Folder Include="BeerModels\" />
     <Folder Include="StyleModels\" />
   </ItemGroup>
   <ItemGroup>
