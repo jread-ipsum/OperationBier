@@ -83,6 +83,20 @@ namespace OperationBier.Controllers
 
             return Ok("The beer has been successfully updated");
         }
+        [HttpPut]
+        [Route("api/Beer/Retailers")]
+        public IHttpActionResult Put([FromBody] BeerRetailers beerRetailers)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var service = CreateBeerService();
+
+            if (!service.UpdateBeerRetailers(beerRetailers))
+                return InternalServerError();
+
+            return Ok("Retailer/s has been successfully added.");
+        }
 
         [Route("api/Beer/Delete/{id}")]
         public IHttpActionResult Delete([FromUri]int id)

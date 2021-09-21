@@ -67,6 +67,7 @@
     <Compile Include="BreweryModels\BreweryDetails.cs" />
     <Compile Include="BreweryModels\BreweryEdit.cs" />
     <Compile Include="BreweryModels\BreweryListItem.cs" />
+    <Compile Include="BeerModels\BeerRetailers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetailModels\CreateRetail.cs" />
     <Compile Include="RetailModels\RetailDetail.cs" />
