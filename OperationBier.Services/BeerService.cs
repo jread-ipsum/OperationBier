@@ -67,14 +67,14 @@ namespace OperationBier.Services
                         BeerName = entity.BeerName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
-                        StyleName = entity.Style.StyleName,
-                        BreweryName = entity.Brewery.BreweryName,
+                        //StyleName = entity.Style.StyleName,
+                        //BreweryName = entity.Brewery.BreweryName,
                         Retailers = entity.Retailers
                     };
             }
         }
 
-        public BeerDetail GetBeerByName(string name)
+        public BeerDetail GetBeerByName(string name)            
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -86,8 +86,8 @@ namespace OperationBier.Services
                     {
                         BeerId = entity.BeerId,
                         BeerName = entity.BeerName,
-                        BreweryName = entity.Brewery.BreweryName,
-                        StyleName = entity.Style.StyleName,
+                        //BreweryName = entity.Brewery.BreweryName,
+                        //StyleName = entity.Style.StyleName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
                         Retailers = entity.Retailers
@@ -143,8 +143,8 @@ namespace OperationBier.Services
                 entity.BeerName = model.BeerName;
                 entity.ABV = model.ABV;
                 entity.IsRecommended = model.IsRecommended;
-                entity.Brewery.BreweryName = model.BreweryName;
-                entity.Style.StyleName = model.StyleName;
+                //entity.Brewery.BreweryName = model.BreweryName;
+                //entity.Style.StyleName = model.StyleName;
 
                 return ctx.SaveChanges() == 1;
             }

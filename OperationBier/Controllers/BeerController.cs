@@ -47,8 +47,8 @@ namespace OperationBier.Controllers
             return Ok(beer);
         }
 
-        [Route("api/Beer/Name")]
-        public IHttpActionResult Get([FromBody] string name)
+        [Route("api/Beer/{name}/")]
+        public IHttpActionResult Get([FromUri] string name)
         {
             BeerService beerService = CreateBeerService();
             var beer = beerService.GetBeerByName(name);
@@ -63,8 +63,8 @@ namespace OperationBier.Controllers
             return Ok(beers);
         }
 
-        [Route("api/Beer/{ABV}")]
-        public IHttpActionResult GetByABV([FromUri] double abv)
+        [Route("api/Beer/abv/{abv}/")]
+        public IHttpActionResult GetByABV([FromUri] double abv)    
         {
             BeerService beerService = CreateBeerService();
             var beers = beerService.GetBeersByABV(abv);
@@ -84,6 +84,7 @@ namespace OperationBier.Controllers
             return Ok("The beer has been successfully updated");
         }
 
+        [Route("api/Beer/Delete/{id}")]
         public IHttpActionResult Delete([FromUri]int id)
         {
             var service = CreateBeerService();
