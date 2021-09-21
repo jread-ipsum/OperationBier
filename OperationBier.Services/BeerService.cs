@@ -67,10 +67,67 @@ namespace OperationBier.Services
                         BeerName = entity.BeerName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
-                        StyleName = entity.Style.StyleName,
-                        BreweryName = entity.Brewery.BreweryName,
+                        //StyleName = entity.Style.StyleName,
+                        //BreweryName = entity.Brewery.BreweryName,
                         Retailers = entity.Retailers
                     };
+            }
+        }
+
+        public BeerDetail GetBeerByName(string name)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity = ctx
+                    .Beers
+                    .Single(e => e.BeerName == name);
+                return
+                    new BeerDetail
+                    {
+                        BeerId = entity.BeerId,
+                        BeerName = entity.BeerName,
+                        //BreweryName = entity.Brewery.BreweryName,
+                        //StyleName = entity.Style.StyleName,
+                        ABV = entity.ABV,
+                        IsRecommended = entity.IsRecommended,
+                        Retailers = entity.Retailers
+                    };
+            }
+        }
+
+        public IEnumerable<BeerRecommended> GetRecommendedBeers()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Where(e => e.IsRecommended == true)
+                    .Select(e => new BeerRecommended
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName,
+                        IsRecommended = e.IsRecommended
+                    });
+                return query.ToArray();
+            }
+        }
+
+        public IEnumerable<BeerABVListItem> GetBeersByABV(double abv)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Where(e => e.ABV == abv)
+                    .Select(e => new BeerABVListItem
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName,
+                        ABV = e.ABV
+                    });
+                return query.ToArray();
             }
         }
 
@@ -86,8 +143,28 @@ namespace OperationBier.Services
                 entity.BeerName = model.BeerName;
                 entity.ABV = model.ABV;
                 entity.IsRecommended = model.IsRecommended;
-                entity.Brewery.BreweryName = model.BreweryName;
-                entity.Style.StyleName = model.StyleName;
+                //entity.Brewery.BreweryName = model.BreweryName;
+                //entity.Style.StyleName = model.StyleName;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool UpdateBeerRetailers (BeerRetailers model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var beerEntity =
+                    ctx
+                    .Beers
+                    .Single(e => e.BeerId == model.BeerId);
+
+                var retailEntity =
+                    ctx
+                    .Retailers
+                    .Single(e => e.RetailId == model.RetailId);
+
+                beerEntity.Retailers.Add(retailEntity);
 
                 return ctx.SaveChanges() == 1;
             }

@@ -47,6 +47,30 @@ namespace OperationBier.Controllers
             return Ok(beer);
         }
 
+        [Route("api/Beer/{name}/")]
+        public IHttpActionResult Get([FromUri] string name)
+        {
+            BeerService beerService = CreateBeerService();
+            var beer = beerService.GetBeerByName(name);
+            return Ok(beer);
+        }
+
+        [Route("api/Beer/Recommended")]
+        public IHttpActionResult GetRecommended()
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetRecommendedBeers();
+            return Ok(beers);
+        }
+
+        [Route("api/Beer/abv/{abv}/")]
+        public IHttpActionResult GetByABV([FromUri] double abv)    
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetBeersByABV(abv);
+            return Ok(beers);
+        }
+
         public IHttpActionResult Put([FromBody] BeerEdit beer)
         {
             if (!ModelState.IsValid)
@@ -59,7 +83,22 @@ namespace OperationBier.Controllers
 
             return Ok("The beer has been successfully updated");
         }
+        [HttpPut]
+        [Route("api/Beer/Retailers")]
+        public IHttpActionResult Put([FromBody] BeerRetailers beerRetailers)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            var service = CreateBeerService();
+
+            if (!service.UpdateBeerRetailers(beerRetailers))
+                return InternalServerError();
+
+            return Ok("Retailer/s has been successfully added.");
+        }
+
+        [Route("api/Beer/Delete/{id}")]
         public IHttpActionResult Delete([FromUri]int id)
         {
             var service = CreateBeerService();
