@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using OperationBier.Models.BreweryModels;
-
+using OperationBier.Services;
 
 namespace OperationBier.Controllers
 {
@@ -36,7 +36,7 @@ namespace OperationBier.Controllers
         public IHttpActionResult Get()
         {
            BreweryService breweryService = CreateBreweryService();
-            var brewery = breweryService.GetBrewery();
+            var brewery = breweryService.GetBreweries();
             return Ok(brewery);
         }
 

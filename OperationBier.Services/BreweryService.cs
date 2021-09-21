@@ -105,7 +105,7 @@ namespace OperationBier.Services
             }
         }
 
-        public bool Brewery(int id)
+        public bool DeleteBrewery(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
