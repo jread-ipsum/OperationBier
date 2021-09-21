@@ -74,7 +74,7 @@ namespace OperationBier.Services
             }
         }
 
-        public BeerDetail GetBeerByName(string name)            
+        public BeerDetail GetBeerByName(string name)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -145,6 +145,26 @@ namespace OperationBier.Services
                 entity.IsRecommended = model.IsRecommended;
                 //entity.Brewery.BreweryName = model.BreweryName;
                 //entity.Style.StyleName = model.StyleName;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
+
+        public bool UpdateBeerRetailers (BeerRetailers model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var beerEntity =
+                    ctx
+                    .Beers
+                    .Single(e => e.BeerId == model.BeerId);
+
+                var retailEntity =
+                    ctx
+                    .Retailers
+                    .Single(e => e.RetailId == model.RetailId);
+
+                beerEntity.Retailers.Add(retailEntity);
 
                 return ctx.SaveChanges() == 1;
             }

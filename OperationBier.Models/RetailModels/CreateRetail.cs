@@ -9,13 +9,12 @@ namespace OperationBier.Models.RetailModels
 {
     public class CreateRetail
     {
+        public int RetailId { get; set; }
+
         [Required]
         [MinLength(1, ErrorMessage = "Retail Names MUST have a minimum length of 1 character.")]
         [MaxLength(100, ErrorMessage = "Retail Names MUST have a maximum length of 100 characters.")]
         public string RetailName { get; set; }
-
-        [MaxLength(1000, ErrorMessage = "Descriptions can have a maximum length of 1000 characters.")]
-        public int RetailId { get; set; }
         public string Address { get; set; }
         public string State { get; set; }
         public string ZipCode { get; set; }
