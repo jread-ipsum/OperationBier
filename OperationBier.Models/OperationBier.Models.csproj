@@ -63,6 +63,7 @@
     <Compile Include="BeerModels\BeerListItem.cs" />
     <Compile Include="BeerModels\BeerEdit.cs" />
     <Compile Include="BeerModels\BeerRecommended.cs" />
+    <Compile Include="BeerModels\BeerRetailers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetailModels\CreateRetail.cs" />
     <Compile Include="RetailModels\RetailDetail.cs" />
