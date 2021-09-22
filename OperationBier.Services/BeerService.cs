@@ -1,5 +1,6 @@
 ﻿using OperationBier.Data;
 using OperationBier.Models.BeerModels;
+using OperationBier.Models.RetailModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,8 +69,18 @@ namespace OperationBier.Services
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
                         //StyleName = entity.Style.StyleName,
-                        //BreweryName = entity.Brewery.BreweryName,
-                        Retailers = entity.Retailers
+                        BreweryName = entity.Brewery.BreweryName,
+                        Retailers = entity.Retailers.Select(e => new RetailDetail
+                        {
+                            RetailId = e.RetailId,
+                            RetailName = e.RetailName,
+                            Address = e.Address,
+                            State = e.State,
+                            ZipCode = e.ZipCode,
+                            PhoneNumber = e.PhoneNumber,
+                            Email = e.Email,
+                            IsOnPremise = e.IsOnPremise
+                        }).ToList()
                     };
             }
         }
@@ -86,11 +97,21 @@ namespace OperationBier.Services
                     {
                         BeerId = entity.BeerId,
                         BeerName = entity.BeerName,
-                        //BreweryName = entity.Brewery.BreweryName,
+                        BreweryName = entity.Brewery.BreweryName,
                         //StyleName = entity.Style.StyleName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
-                        Retailers = entity.Retailers
+                        Retailers = entity.Retailers.Select(e => new RetailDetail
+                        {
+                            RetailId = e.RetailId,
+                            RetailName = e.RetailName,
+                            Address = e.Address,
+                            State = e.State,
+                            ZipCode = e.ZipCode,
+                            PhoneNumber = e.PhoneNumber,
+                            Email = e.Email,
+                            IsOnPremise= e.IsOnPremise
+                        }).ToList()
                     };
             }
         }
@@ -143,7 +164,7 @@ namespace OperationBier.Services
                 entity.BeerName = model.BeerName;
                 entity.ABV = model.ABV;
                 entity.IsRecommended = model.IsRecommended;
-                //entity.Brewery.BreweryName = model.BreweryName;
+                entity.BreweryId = model.BreweryId;
                 //entity.Style.StyleName = model.StyleName;
 
                 return ctx.SaveChanges() == 1;

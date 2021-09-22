@@ -47,7 +47,7 @@ namespace OperationBier.Controllers
             return Ok(beer);
         }
 
-        [Route("api/Beer/{name}/")]
+        [Route("api/Beer/Name/{name}/")]
         public IHttpActionResult Get([FromUri] string name)
         {
             BeerService beerService = CreateBeerService();
