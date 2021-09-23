@@ -24,6 +24,14 @@ namespace OperationBier.Controllers
             var retail = retailService.GetRetail();
             return Ok(retail);
         }
+
+        [Route("api/Retail/IsOnPremise")]
+        public IHttpActionResult GetRetailIsOnPremise()
+        {
+            RetailService retailService = CreateRetailService();
+            var retailers = retailService.GetRetailIsOnPremise();
+            return Ok(retailers);
+        }
         public IHttpActionResult Post(CreateRetail retail)
         {
             if (!ModelState.IsValid)
@@ -34,7 +42,7 @@ namespace OperationBier.Controllers
             if (!service.RetailCreate(retail))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("The Retailer has been added!");
         }
         private RetailService CreateRetailService()
         {
@@ -46,6 +54,7 @@ namespace OperationBier.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
+
             var service = CreateRetailService();
 
             if (!service.UpdateRetail(retail))
@@ -60,7 +69,7 @@ namespace OperationBier.Controllers
             if (!service.DeleteRetail(id))
                 return InternalServerError();
 
-            return Ok();
+            return Ok("Retailer Has been Deleted.");
         }
     }
 }

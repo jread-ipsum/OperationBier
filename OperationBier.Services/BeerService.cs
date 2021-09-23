@@ -1,5 +1,6 @@
 ﻿using OperationBier.Data;
 using OperationBier.Models.BeerModels;
+using OperationBier.Models.RetailModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,8 +27,8 @@ namespace OperationBier.Services
                     BeerName = model.BeerName,
                     ABV = model.ABV,
                     IsRecommended = model.IsRecommended,
-                    StyleId = model.StyleId,
-                    BreweryId = model.BreweryId
+                    BreweryId = model.BreweryId,
+                    //StyleId = model.StyleId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -67,9 +68,19 @@ namespace OperationBier.Services
                         BeerName = entity.BeerName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
+                        BreweryName = entity.Brewery.BreweryName,
                         //StyleName = entity.Style.StyleName,
-                        //BreweryName = entity.Brewery.BreweryName,
-                        Retailers = entity.Retailers
+                        Retailers = entity.Retailers.Select(e => new RetailDetail
+                        {
+                            RetailId = e.RetailId,
+                            RetailName = e.RetailName,
+                            Address = e.Address,
+                            State = e.State,
+                            ZipCode = e.ZipCode,
+                            PhoneNumber = e.PhoneNumber,
+                            Email = e.Email,
+                            IsOnPremise = e.IsOnPremise
+                        }).ToList()
                     };
             }
         }
@@ -86,11 +97,21 @@ namespace OperationBier.Services
                     {
                         BeerId = entity.BeerId,
                         BeerName = entity.BeerName,
-                        //BreweryName = entity.Brewery.BreweryName,
+                        BreweryName = entity.Brewery.BreweryName,
                         //StyleName = entity.Style.StyleName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
-                        Retailers = entity.Retailers
+                        Retailers = entity.Retailers.Select(e => new RetailDetail
+                        {
+                            RetailId = e.RetailId,
+                            RetailName = e.RetailName,
+                            Address = e.Address,
+                            State = e.State,
+                            ZipCode = e.ZipCode,
+                            PhoneNumber = e.PhoneNumber,
+                            Email = e.Email,
+                            IsOnPremise= e.IsOnPremise
+                        }).ToList()
                     };
             }
         }
@@ -131,6 +152,24 @@ namespace OperationBier.Services
             }
         }
 
+        public IEnumerable<BeerABVListItem> GetBeersGreaterThan(double abv)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Where(e => e.ABV > abv)
+                    .Select(e => new BeerABVListItem
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName,
+                        ABV = e.ABV
+                    });
+                return query.ToArray();
+            }
+        }
+
         public bool UpdateBeer(BeerEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -143,8 +182,8 @@ namespace OperationBier.Services
                 entity.BeerName = model.BeerName;
                 entity.ABV = model.ABV;
                 entity.IsRecommended = model.IsRecommended;
-                //entity.Brewery.BreweryName = model.BreweryName;
-                //entity.Style.StyleName = model.StyleName;
+                entity.BreweryId = model.BreweryId;
+                //entity.StyleId = model.StyleId;
 
                 return ctx.SaveChanges() == 1;
             }
