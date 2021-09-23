@@ -14,6 +14,7 @@ namespace OperationBier.Models.RetailModels
         [Required]
         [MinLength(1, ErrorMessage = "Retail Names MUST have a minimum length of 1 character.")]
         [MaxLength(100, ErrorMessage = "Retail Names MUST have a maximum length of 100 characters.")]
+
         public string RetailName { get; set; }
         public string Address { get; set; }
         public string State { get; set; }
