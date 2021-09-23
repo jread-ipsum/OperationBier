@@ -109,4 +109,40 @@ Installation
 
 
 ## Style
+
+> Usage
+  Add a Style:
+    POST api/Style
+      URI parameters: none
+      Body parameters:  
+      NAME                  TYPE
+      StyleName             string
+      Description           string
+      IBU                   integer
+      FoodPairing           List<string>
+      CountryOfOrigin       string
+      ReccomendedGlassware  string
+
+ > Update a Style:
+    PUT api/Style
+      URI parameters: none
+      Body parameters:
+      NAME                  TYPE
+      StyleName             string
+      Description           string
+      IBU                   integer
+      FoodPairing           List<string>
+      CountryOfOrigin       string
+      ReccomendedGlassware  string
+            
+  >Delete a Style:
+    DELETE api/Style/{id}
+      URI parameters: 
+      NAME            TYPE
+      id              integer   required
+  
+ > Get all Styles:
+    GET api/Style
+      URI parameters: none
+      Body parameters: none
       
