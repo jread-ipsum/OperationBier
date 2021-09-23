@@ -10,6 +10,5 @@ namespace OperationBier.Controllers
     [Authorize]
     public class StyleController : ApiController
     {
-        private StyleService CreateStyleService();
     }
 }
