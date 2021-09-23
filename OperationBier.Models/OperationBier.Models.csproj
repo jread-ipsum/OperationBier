@@ -74,9 +74,13 @@
     <Compile Include="RetailModels\RetailIsOnPremise.cs" />
     <Compile Include="RetailModels\RetailListItem.cs" />
     <Compile Include="RetailModels\EditRetail.cs" />
+    <Compile Include="StyleModels\StyleCreate.cs" />
+    <Compile Include="StyleModels\StyleListItem.cs" />
+    <Compile Include="StyleModels\StyleEdit.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="StyleModels\" />
+    <Folder Include="BreweryModels\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
