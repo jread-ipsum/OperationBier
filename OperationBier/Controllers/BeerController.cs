@@ -47,7 +47,7 @@ namespace OperationBier.Controllers
             return Ok(beer);
         }
 
-        [Route("api/Beer/{name}/")]
+        [Route("api/Beer/Name/{name}/")]
         public IHttpActionResult Get([FromUri] string name)
         {
             BeerService beerService = CreateBeerService();
@@ -68,6 +68,14 @@ namespace OperationBier.Controllers
         {
             BeerService beerService = CreateBeerService();
             var beers = beerService.GetBeersByABV(abv);
+            return Ok(beers);
+        }
+
+        [Route("api/Beer/abvgreater/{abv}/")]
+        public IHttpActionResult GetGreaterThan([FromUri] double abv)
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetBeersGreaterThan(abv);
             return Ok(beers);
         }
 
@@ -98,7 +106,6 @@ namespace OperationBier.Controllers
             return Ok("Retailer/s has been successfully added.");
         }
 
-        [Route("api/Beer/Delete/{id}")]
         public IHttpActionResult Delete([FromUri]int id)
         {
             var service = CreateBeerService();

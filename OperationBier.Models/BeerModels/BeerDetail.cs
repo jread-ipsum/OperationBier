@@ -1,4 +1,5 @@
 ﻿using OperationBier.Data;
+using OperationBier.Models.RetailModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,11 @@ namespace OperationBier.Models.BeerModels
     {
         public int BeerId { get; set; }
         public string BeerName { get; set; }
+        public string BreweryName { get; set; }
         public double ABV { get; set; }
         public bool? IsRecommended { get; set; }
         //public string StyleName { get; set; }
-        //public string BreweryName { get; set; }
-        public virtual List<Retail> Retailers { get; set; }
+        public virtual List<RetailDetail> Retailers { get; set; }
 
     }
 }
