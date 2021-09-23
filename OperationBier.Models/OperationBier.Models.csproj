@@ -71,6 +71,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RetailModels\CreateRetail.cs" />
     <Compile Include="RetailModels\RetailDetail.cs" />
+    <Compile Include="RetailModels\RetailIsOnPremise.cs" />
     <Compile Include="RetailModels\RetailListItem.cs" />
     <Compile Include="RetailModels\EditRetail.cs" />
     <Compile Include="StyleModels\StyleCreate.cs" />

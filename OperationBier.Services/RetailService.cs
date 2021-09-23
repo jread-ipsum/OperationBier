@@ -10,16 +10,17 @@ namespace OperationBier.Services
 {
     public class RetailService
     {
-        private readonly Guid AuthorId;
-        public RetailService(Guid authorId)
+        private readonly Guid _userId;
+        public RetailService(Guid userId)
         {
-            AuthorId = authorId;
+            _userId = userId;
         }
         public bool RetailCreate(CreateRetail model)
         {
             var entity =
                 new Retail()
                 {
+                    AuthorId = _userId,
                     RetailId = model.RetailId,
                     RetailName = model.RetailName,
                     Address = model.Address,
@@ -43,10 +44,7 @@ namespace OperationBier.Services
                 var query =
                     ctx
                     .Retailers
-                    .Where(e => e.AuthorId == AuthorId)
-                    .Select(
-                        e =>
-                        new RetailListItem
+                    .Select( e => new RetailListItem
                         {
                             RetailId = e.RetailId,
                             RetailName = e.RetailName,
@@ -80,7 +78,7 @@ namespace OperationBier.Services
                 var entity =
                     ctx
                     .Retailers
-                    .Single(e => e.RetailId == model.RetailId && e.AuthorId == AuthorId);
+                    .Single(e => e.RetailId == model.RetailId);
 
                 entity.RetailName = model.RetailName;
                 entity.Address = model.Address;
@@ -93,14 +91,32 @@ namespace OperationBier.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool DeleteRetail(int retailId)
+
+        public IEnumerable<RetailIsOnPremise> GetRetailIsOnPremise()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Retailers
+                    .Where(e => e.IsOnPremise == true)
+                    .Select(e => new RetailIsOnPremise
+                    {
+                        RetailId = e.RetailId,
+                        RetailName = e.RetailName,
+                        IsOnPremise = e.IsOnPremise
+                    });
+                return query.ToArray();
+            }
+        }
+        public bool DeleteRetail(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                     .Retailers
-                    .Single(e => e.RetailId == retailId && e.AuthorId == AuthorId);
+                    .Single(e => e.RetailId == id);
 
                 ctx.Retailers.Remove(entity);
 
