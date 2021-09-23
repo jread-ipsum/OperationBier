@@ -133,7 +133,7 @@ Installation
       
   >Delete Retailer:
     DELETE api/Retail/2
-      URI parameters: https://localhost:44353/api/Retail/2
+      URI parameters: none
       NAME            TYPE
       URI parameters: none
       Body parameters: none
