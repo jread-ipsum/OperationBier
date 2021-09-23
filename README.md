@@ -106,6 +106,51 @@ Installation
       
 ## Retail
 
+ > Add Retail:
+    POST api/Retail
+      URI parameters: none
+      Body parameters:  
+      NAME            TYPE
+      RetailName        string    required
+      Address           string    
+      State             string
+      ZipCode           string
+      PhoneNumber       string
+
+ > Update Retail:
+    PUT api/Retail
+      URI parameters: none
+      Body parameters:
+      NAME            TYPE
+      RetailId          integer   required
+      RetailName        string    required
+      Address           string    
+      State             string
+      ZipCode           string
+      Email             String
+      PhoneNumber       string
+      IsOnPremise       bool
+      
+  >Delete Retailer:
+    DELETE api/Retail/2
+      URI parameters: https://localhost:44353/api/Retail/2
+      NAME            TYPE
+      URI parameters: none
+      Body parameters: none
+  
+ > Get Retailers:
+    GET api/Retail
+      URI parameters: none
+      Body parameters: none
+  
+  > Get Retailers by Id:
+    GET api/retail/{id}
+      URI parameters: none
+      Body parameters: none
+      
+  > Get RetailIsOnPremise:
+    GET api/Retail/IsOnPremise
+      URI parameters: none
 
 
 ## Style
