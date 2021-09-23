@@ -71,6 +71,14 @@ namespace OperationBier.Controllers
             return Ok(beers);
         }
 
+        [Route("api/Beer/abvgreater/{abv}/")]
+        public IHttpActionResult GetGreaterThan([FromUri] double abv)
+        {
+            BeerService beerService = CreateBeerService();
+            var beers = beerService.GetBeersGreaterThan(abv);
+            return Ok(beers);
+        }
+
         public IHttpActionResult Put([FromBody] BeerEdit beer)
         {
             if (!ModelState.IsValid)
@@ -98,7 +106,6 @@ namespace OperationBier.Controllers
             return Ok("Retailer/s has been successfully added.");
         }
 
-        [Route("api/Beer/Delete/{id}")]
         public IHttpActionResult Delete([FromUri]int id)
         {
             var service = CreateBeerService();

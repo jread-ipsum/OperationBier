@@ -27,8 +27,8 @@ namespace OperationBier.Services
                     BeerName = model.BeerName,
                     ABV = model.ABV,
                     IsRecommended = model.IsRecommended,
-                    StyleId = model.StyleId,
-                    BreweryId = model.BreweryId
+                    BreweryId = model.BreweryId,
+                    //StyleId = model.StyleId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -68,8 +68,8 @@ namespace OperationBier.Services
                         BeerName = entity.BeerName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
-                        //StyleName = entity.Style.StyleName,
                         BreweryName = entity.Brewery.BreweryName,
+                        //StyleName = entity.Style.StyleName,
                         Retailers = entity.Retailers.Select(e => new RetailDetail
                         {
                             RetailId = e.RetailId,
@@ -152,6 +152,24 @@ namespace OperationBier.Services
             }
         }
 
+        public IEnumerable<BeerABVListItem> GetBeersGreaterThan(double abv)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Beers
+                    .Where(e => e.ABV > abv)
+                    .Select(e => new BeerABVListItem
+                    {
+                        BeerId = e.BeerId,
+                        BeerName = e.BeerName,
+                        ABV = e.ABV
+                    });
+                return query.ToArray();
+            }
+        }
+
         public bool UpdateBeer(BeerEdit model)
         {
             using (var ctx = new ApplicationDbContext())
@@ -165,7 +183,7 @@ namespace OperationBier.Services
                 entity.ABV = model.ABV;
                 entity.IsRecommended = model.IsRecommended;
                 entity.BreweryId = model.BreweryId;
-                //entity.Style.StyleName = model.StyleName;
+                //entity.StyleId = model.StyleId;
 
                 return ctx.SaveChanges() == 1;
             }
