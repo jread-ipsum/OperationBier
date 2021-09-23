@@ -90,7 +90,17 @@ Installation
       abv             double    required 
     
 ## Brewery
+> Usage Add a Brewery: POST api/Brewery URI parameters: none Body parameters:  
 
+> NAME TYPEBreweryId integer required BreweryName string required BreweryDescription string IsStillInBusinessboolean string Address string State string ZipCode string PhoneNumber string Email string CountryOfOrigin 
+
+> Update a Brewery: PUT api/Brewery URI parameters: none Body parameters: 
+
+> NAME TYPEBreweryId integer required BreweryName string required BreweryDescription string IsStillInBusinessboolean string Address string State string ZipCode string PhoneNumber string Email string CountryOfOrigin 
+
+> Delete a Brewery: DELETE api/Brewery/{id} URI parameters: NAME TYPE id integer required 
+
+> Get all Breweries: GET api/Brewery URI parameters: none Body parameters: none 
 
 
       
