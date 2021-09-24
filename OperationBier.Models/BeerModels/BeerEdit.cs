@@ -18,6 +18,6 @@ namespace OperationBier.Models.BeerModels
         public double ABV { get; set; }
         public bool IsRecommended { get; set; }
         public int? BreweryId { get; set; }
-        //public int? StyleId { get; set; }
+        public int? StyleId { get; set; }
     }
 }
