@@ -16,6 +16,7 @@ Installation
     For projects OperationBier.Data and OperationBierAPI:
       Microsoft.AspNet.Identity.Owin 2.2.3
       Microsoft.AspNet.WebApi.Owin 5.2.7
+      <p>[Trello Board](https://trello.com/b/iUht9CUt/beertracker)</p>
       
  ## Beer
    
