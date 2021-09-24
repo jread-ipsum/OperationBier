@@ -28,7 +28,7 @@ namespace OperationBier.Services
                     ABV = model.ABV,
                     IsRecommended = model.IsRecommended,
                     BreweryId = model.BreweryId,
-                    //StyleId = model.StyleId
+                    StyleId = model.StyleId
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -69,7 +69,7 @@ namespace OperationBier.Services
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
                         BreweryName = entity.Brewery.BreweryName,
-                        //StyleName = entity.Style.StyleName,
+                        StyleName = entity.Style.StyleName,
                         Retailers = entity.Retailers.Select(e => new RetailDetail
                         {
                             RetailId = e.RetailId,
@@ -98,7 +98,7 @@ namespace OperationBier.Services
                         BeerId = entity.BeerId,
                         BeerName = entity.BeerName,
                         BreweryName = entity.Brewery.BreweryName,
-                        //StyleName = entity.Style.StyleName,
+                        StyleName = entity.Style.StyleName,
                         ABV = entity.ABV,
                         IsRecommended = entity.IsRecommended,
                         Retailers = entity.Retailers.Select(e => new RetailDetail
@@ -183,7 +183,7 @@ namespace OperationBier.Services
                 entity.ABV = model.ABV;
                 entity.IsRecommended = model.IsRecommended;
                 entity.BreweryId = model.BreweryId;
-                //entity.StyleId = model.StyleId;
+                entity.StyleId = model.StyleId;
 
                 return ctx.SaveChanges() == 1;
             }
