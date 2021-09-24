@@ -16,7 +16,7 @@ namespace OperationBier.Controllers
         {
             RetailService retailService = CreateRetailService();
             var retail = retailService.GetRetailById(id);
-            return Ok();
+            return Ok(retail);
         }
         public IHttpActionResult Get()
         {
